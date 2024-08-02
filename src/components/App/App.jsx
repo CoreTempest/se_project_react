@@ -6,6 +6,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
+import Footer from "../Footer/Footer.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -39,6 +40,7 @@ function App() {
       <div className="app__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Footer />
       </div>
       <ModalWithForm
         buttonText="Add Garment"
@@ -56,7 +58,7 @@ function App() {
           />
         </label>
         <label htmlFor="imageURL" className="modal__label">
-          Name{" "}
+          Image{" "}
           <input
             type="text"
             className="modal__input"
@@ -66,21 +68,15 @@ function App() {
         </label>
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
-          <label htmlFor="hot" className="modal__label modal__label_type_radio">
+          <label htmlFor="hot" className="modal__label_type_radio">
             <input type="radio" className="modal__radio-input" id="hot" />
             Hot
           </label>
-          <label
-            htmlFor="warm"
-            className="modal__label modal__label_type_radio"
-          >
+          <label htmlFor="warm" className="modal__label_type_radio">
             <input type="radio" className="modal__radio-input" id="warm" />
             Warm
           </label>
-          <label
-            htmlFor="cold"
-            className="modal__label modal__label_type_radio"
-          >
+          <label htmlFor="cold" className="modal__label_type_radio">
             <input type="radio" className="modal__radio-input" id="cold" />
             Cold
           </label>

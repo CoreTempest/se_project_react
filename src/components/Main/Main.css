@@ -5,4 +5,10 @@
   padding: 0;
   list-style-type: none;
   gap: 21px;
+  font-family: "CabinetGrotesk-Bold", "Arial", sans-serif;
+}
+
+.cards__text {
+  font-family: "CabinetGrotesk-Bold", "Arial", sans-serif;
+  font-size: 20px;
 }
