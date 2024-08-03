@@ -1,8 +1,8 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, onClose, card }) {
+function ItemModal({ isOpened, onClose, card }) {
   return (
-    <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
+    <div className={`modal ${isOpened && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
         <button
           onClick={onClose}
