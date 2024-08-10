@@ -36,3 +36,8 @@
   border: none;
   cursor: pointer;
 }
+
+.header__container {
+  margin-left: auto;
+  display: flex;
+}
