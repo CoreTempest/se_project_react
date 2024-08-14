@@ -1,16 +1,19 @@
+import React from "react";
 import WeatherCard from "../WeatherCard/WeatherCard";
-import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
+import CurrentTemperatureUnitContext from "../../utils/contexts/CurrentTemperatureUnitContext";
+import { useContext } from "react";
+import { defaultClothingItems } from "../../utils/constants";
 
 function Main({ weatherData, handleCardClick }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const temp = weatherData?.temperature?.[currentTemperatureUnit] || 999;
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
-        <p className="cards__text">
-          Today is {weatherData.temp.F} &deg; F / You may want to wear
-        </p>
+        <p className="cards__text">Today is {temp} / You may want to wear</p>
         <ul className="cards__list">
           {defaultClothingItems
             .filter((item) => {
