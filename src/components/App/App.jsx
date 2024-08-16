@@ -49,8 +49,8 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="app__content">
-          <Header handleAddClick={handleAddClick} weatherData={temp} />
-          <Main weatherData={temp} handleCardClick={handleCardClick} />
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
           <Footer />
         </div>
         <ModalWithForm
