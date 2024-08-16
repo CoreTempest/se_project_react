@@ -38,10 +38,10 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+        console.log(filteredData);
       })
       .catch(console.error);
   }, []);
-  console.log(currentTemperatureUnit);
 
   return (
     <div className="app">
@@ -49,8 +49,8 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="app__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+          <Header handleAddClick={handleAddClick} weatherData={temp} />
+          <Main weatherData={temp} handleCardClick={handleCardClick} />
           <Footer />
         </div>
         <ModalWithForm
