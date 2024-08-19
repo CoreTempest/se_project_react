@@ -6,6 +6,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
   const [name, setName] = useState("");
   const [link, setUrl] = useState("");
   const [weather, setWeather] = useState("");
+
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
@@ -31,7 +32,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
       buttonText="Add Garment"
       isOpen={isOpen}
       closeActiveModal={handleCloseModal}
-      onSubmit={handleSubmit}
+      onSubmit={onAddNewItem}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
@@ -41,7 +42,6 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
           id="name"
           placeholder="Name"
           value={name}
-          //onChange={(e) => setName(e.target.value)}
           onChange={handleNameChange}
         />
       </label>
