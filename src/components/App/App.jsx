@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
-import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer.jsx";
 import CurrentTemperatureUnitContext from "../../utils/contexts/CurrentTemperatureUnitContext.jsx";
+import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -18,9 +18,12 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const handleAddClick = () => {
-    setActiveModal("add-garment");
+    console.log("Add button clicked");
+    setActiveModal("create");
+    console.log("activeModal after set:", activeModal);
   };
   const closeActiveModal = () => {
+    console.log("Closing modal");
     setActiveModal("");
   };
   const handleCardClick = (card) => {
@@ -61,11 +64,11 @@ function App() {
           <AddItemModal
             handleCloseModal={closeActiveModal}
             isOpen={activeModal === "create"}
-            onAddNewItem={onAddItem}
+            onAddItem={onAddItem}
           />
         )}
         {activeModal === "preview" && (
-          <ItemModal card={selectedCard} onClose={closeActiveModal} />
+          <ItemModal card={selectedCard} handleCloseModal={closeActiveModal} />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
