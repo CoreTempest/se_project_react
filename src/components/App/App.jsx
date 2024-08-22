@@ -10,6 +10,7 @@ import CurrentTemperatureUnitContext from "../../utils/contexts/CurrentTemperatu
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile.jsx";
+import { getItems } from "../../utils/Api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -19,6 +20,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
   const handleAddClick = () => {
     console.log("Add button clicked");
     setActiveModal("create");
@@ -52,6 +54,15 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        //set the clothing items
+        console.log(data);
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="app">
       <CurrentTemperatureUnitContext.Provider
@@ -63,6 +74,7 @@ function App() {
             <Route
               path="/"
               element={
+                //pass clothing items as prop
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
