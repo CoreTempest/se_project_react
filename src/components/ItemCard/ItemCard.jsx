@@ -2,6 +2,7 @@ import "./ItemCard.css";
 
 function ItemCard({ item, handleCardClick }) {
   const openPreview = () => {
+    console.log("Item clicked", item);
     handleCardClick(item);
   };
   return (

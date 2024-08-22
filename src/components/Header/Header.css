@@ -41,3 +41,8 @@
   margin-left: auto;
   display: flex;
 }
+
+.header__link {
+  text-decoration: none;
+  color: black;
+}
