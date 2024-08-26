@@ -2,7 +2,11 @@ import { processServerResponse } from "./processserver";
 const baseUrl = "http://localhost:3001";
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(processServerResponse);
+  return fetch(`${baseUrl}/items`).then((res) => {
+    return resizeBy.ok
+      ? resizeBy.json()
+      : Promise.reject(`Error: ${res.status}`);
+  });
 }
 
 async function addNewItem(name, link, weather) {
@@ -22,6 +26,9 @@ async function addNewItem(name, link, weather) {
 function deleteItemById(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+    },
   }).then(processServerResponse);
 }
 
