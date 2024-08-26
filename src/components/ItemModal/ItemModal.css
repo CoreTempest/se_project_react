@@ -39,3 +39,17 @@
   font-family: "CabinetGrotesk-Bold", "Arial", sans-serif;
   font-size: 20px;
 }
+
+.card-item__delete-btn {
+  color: red;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  position: absolute;
+  outline: none;
+  cursor: pointer;
+  bottom: 91px;
+  left: 380px;
+}

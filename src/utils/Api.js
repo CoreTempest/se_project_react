@@ -1,11 +1,10 @@
 import { processServerResponse } from "./processserver";
 const baseUrl = "http://localhost:3001";
+console.log(baseUrl);
 
 function getItems() {
   return fetch(`${baseUrl}/items`).then((res) => {
-    return resizeBy.ok
-      ? resizeBy.json()
-      : Promise.reject(`Error: ${res.status}`);
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 }
 
