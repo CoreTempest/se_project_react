@@ -1,0 +1,52 @@
+.modal__container {
+  width: 670px;
+  height: 280px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+}
+
+.modal__delete_question {
+  font-family: "CabinetGrotesk-Bold", "Arial", sans-serif;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 0;
+}
+
+.modal__confirm {
+  color: red;
+  border: none;
+  background: none;
+  margin: auto;
+  display: flex;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  margin-top: 40px;
+  margin-bottom: 0px;
+}
+
+.modal__cancel {
+  height: 24px;
+  width: 61px;
+  display: flex;
+  position: relative;
+  margin: auto;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  outline: none;
+  cursor: pointer;
+  margin-top: 24px;
+}
+
+.modal__close {
+  position: absolute;
+  background-image: url(../../assets/closebutton.png);
+  border: none;
+  height: 20px;
+  width: 20px;
+}

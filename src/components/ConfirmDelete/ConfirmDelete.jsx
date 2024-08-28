@@ -1,4 +1,5 @@
-import "./ConfirmDeleteModal.css";
+import "./ConfirmDelete.css";
+import closeBtn from "../../assets/closebutton.png";
 
 function ConfirmDeleteModal({
   item,

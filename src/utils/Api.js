@@ -10,7 +10,7 @@ function getItems() {
 
 async function addNewItem(name, link, weather) {
   return fetch(`${baseUrl}/items`, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-type": "application/json",
     },

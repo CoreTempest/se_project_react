@@ -30,8 +30,8 @@
 
 .modal__close {
   position: absolute;
-  top: 20px;
-  right: 28px;
+  top: 37px;
+  right: 37px;
   background-image: url(../../assets/closebutton.png);
   border: none;
   height: 20px;

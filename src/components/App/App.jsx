@@ -11,6 +11,7 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile.jsx";
 import { getItems, addNewItem, deleteItemById } from "../../utils/api.js";
+import ConfirmDeleteModal from "../ConfirmDelete/ConfirmDelete.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -94,7 +95,6 @@ function App() {
             <Route
               path="/"
               element={
-                //pass clothing items as prop
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
@@ -130,6 +130,11 @@ function App() {
             openDeleteModal={openDeleteModal}
           />
         )}
+        <ConfirmDeleteModal
+          activeModal={activeModal === "delete"}
+          handleDeleteItem={handleDeleteItem}
+          closeActiveModal={closeActiveModal}
+        />
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );
