@@ -1,9 +1,9 @@
 import React from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
-import { defaultClothingItems } from "../../utils/constants";
+// import { defaultClothingItems } from "../../utils/constants";
 
-function ClothesSection({ handleCardClick, handleAddClick }) {
+function ClothesSection({ clothingItems, handleCardClick, handleAddClick }) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__buttons">
@@ -17,7 +17,7 @@ function ClothesSection({ handleCardClick, handleAddClick }) {
         </button>
       </div>
       <ul className="clothes-section__items">
-        {defaultClothingItems.map((item) => {
+        {clothingItems.map((item) => {
           return (
             <ItemCard
               key={item._id}

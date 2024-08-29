@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState } from "react";
 
 const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   const [name, setName] = useState("");
-  const [link, setUrl] = useState("");
+  const [imageUrl, setUrl] = useState("");
   const [weather, setWeather] = useState("");
 
   const handleNameChange = (e) => {
@@ -22,9 +21,22 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
     setWeather(e.target.value);
   };
 
+  function resetForm() {
+    setName("");
+    setImageUrl("");
+    setWeather("");
+  }
+
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddNewItem({ name, link, weather });
+    onAddItem({ name, imageUrl, weather });
+    resetForm();
   };
   return (
     <ModalWithForm
@@ -32,7 +44,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
       buttonText="Add Garment"
       isOpen={isOpen}
       handleCloseModal={handleCloseModal}
-      onSubmit={onAddItem}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
@@ -45,14 +57,14 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="link" className="modal__label">
+      <label htmlFor="imageUrl" className="modal__label">
         Image{" "}
         <input
           type="text"
           className="modal__input"
           id="link"
           placeholder="Image URL"
-          value={link}
+          value={imageUrl}
           onChange={handleUrlChange}
         />
       </label>
