@@ -2,7 +2,7 @@
 
 ## About the project
 
-The idea of the application is pretty simple - we make a call to an API, which then responds with the daily weather forecast. We collect the weather data, process it, and then based on the forecast, we recommend suitable clothing to the user.
+This project showcases a responsive design based on changes in weather from the viewer's location. This includes the ability to swap between F and C degrees and dynamic updates to a list of items called from an API based on temperature. The site connects multiple .jsx files through export/import statements and takes advantage of React Router to link all files and create paths to additional pages such as a user's Profile page.
 
 ## Links
 

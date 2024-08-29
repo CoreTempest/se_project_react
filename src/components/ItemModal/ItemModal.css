@@ -14,11 +14,23 @@
   padding: 20px 32px 32px;
   background-color: #fff;
   margin: 0;
+  position: relative;
+  bottom: 6px;
   border-radius: 0 0 16px 16px;
 }
 
 .modal__weather {
   margin: 0;
+}
+
+.modal__close-btn {
+  position: relative;
+  top: 40px;
+  left: 460px;
+  background-image: url(../../assets/closebutton.png);
+  border: none;
+  height: 20px;
+  width: 20px;
 }
 
 .modal__caption {
@@ -47,9 +59,9 @@
   padding: 0;
   margin: 0;
   font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
-  position: absolute;
+  position: relative;
   outline: none;
   cursor: pointer;
-  bottom: 69px;
-  left: 380px;
+  bottom: 96px;
+  left: 350px;
 }
