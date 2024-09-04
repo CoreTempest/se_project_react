@@ -40,8 +40,8 @@ function App() {
     setActiveModal("delete");
   };
 
-  function onAddItem({ name, weather, link }) {
-    addNewItem(name, link, weather)
+  function onAddItem({ name, weather, imageUrl }) {
+    addNewItem(name, imageUrl, weather)
       .then((data) => {
         setClothingItems((prev) => [data, ...prev]);
         closeActiveModal();
