@@ -92,13 +92,20 @@
     },
     {
       "name": "hat",
-      "weather": "hot",
-      "_id": 17
+      "weather": "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "_id": 18
     },
     {
       "name": "hat",
-      "weather": "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "_id": 18
+      "imageUrl": "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "weather": "warm",
+      "_id": 19
+    },
+    {
+      "name": "hat",
+      "imageUrl": "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "weather": "hot",
+      "_id": 20
     }
   ]
 }

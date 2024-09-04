@@ -8,7 +8,7 @@ function getItems() {
   });
 }
 
-async function addNewItem(name, link, weather) {
+async function addNewItem(name, imageUrl, weather) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -16,7 +16,7 @@ async function addNewItem(name, link, weather) {
     },
     body: JSON.stringify({
       name,
-      link,
+      imageUrl,
       weather,
     }),
   }).then(processServerResponse);
