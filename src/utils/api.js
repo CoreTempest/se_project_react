@@ -3,9 +3,7 @@ const baseUrl = "http://localhost:3001";
 console.log(baseUrl);
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  return fetch(`${baseUrl}/items`).then(processServerResponse);
 }
 
 async function addNewItem(name, imageUrl, weather) {

@@ -3,7 +3,7 @@ import {
   weatherOptions,
   defaultWeatherOptions,
 } from "../../utils/constants.js";
-import CurrentTemperatureUnitContext from "../../utils/contexts/CurrentTemperatureUnitContext.jsx";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { useContext } from "react";
 
 function WeatherCard({ weatherData }) {

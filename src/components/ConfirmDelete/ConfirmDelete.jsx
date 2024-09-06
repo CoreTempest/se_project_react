@@ -14,14 +14,12 @@ function ConfirmDeleteModal({
   return (
     <div className={`modal  ${activeModal && "modal_opened"}`}>
       <div className="modal__container modal__content_type_delete">
-        <button className="modal__close" type="button">
-          <img
-            src={closeBtn}
-            alt="close-button"
-            className="modal__close-btn"
-            onClick={closeActiveModal}
-          />
-        </button>
+        <img
+          src={closeBtn}
+          alt="close-button"
+          className="modal__close-btn"
+          onClick={closeActiveModal}
+        />
         <p className="modal__delete_question">
           Are you sure you want to delete this item?
           <br /> This action is irreversible.

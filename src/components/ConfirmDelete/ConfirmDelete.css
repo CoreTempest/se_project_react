@@ -42,11 +42,3 @@
   cursor: pointer;
   margin-top: 24px;
 }
-
-.modal__close {
-  position: absolute;
-  background-image: url(../../assets/closebutton.png);
-  border: none;
-  height: 20px;
-  width: 20px;
-}
