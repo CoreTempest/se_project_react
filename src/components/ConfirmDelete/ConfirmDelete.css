@@ -42,3 +42,11 @@
   cursor: pointer;
   margin-top: 24px;
 }
+
+.modal__exit-btn {
+  position: relative;
+  top: 20px;
+  left: 625px;
+  height: 20px;
+  width: 20px;
+}

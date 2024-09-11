@@ -17,7 +17,7 @@ function ConfirmDeleteModal({
         <img
           src={closeBtn}
           alt="close-button"
-          className="modal__close-btn"
+          className="modal__exit-btn"
           onClick={closeActiveModal}
         />
         <p className="modal__delete_question">
