@@ -1,6 +1,13 @@
 import { processServerResponse } from "./processserver";
-const baseUrl = "http://localhost:3001";
-console.log(baseUrl);
+
+export const baseUrl = "http://localhost:3001";
+
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error:${res.status}`);
+}
 
 function getItems() {
   return fetch(`${baseUrl}/items`).then(processServerResponse);
@@ -29,4 +36,4 @@ function deleteItemById(id) {
   }).then(processServerResponse);
 }
 
-export { getItems, addNewItem, deleteItemById };
+export { getItems, addNewItem, deleteItemById, checkResponse };

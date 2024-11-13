@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer.jsx";
@@ -12,6 +13,19 @@ import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile.jsx";
 import { getItems, addNewItem, deleteItemById } from "../../utils/api.js";
 import ConfirmDeleteModal from "../ConfirmDelete/ConfirmDelete.jsx";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import {
+  checkToken,
+  signIn,
+  signUp,
+  updateCurrentUser,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/auth.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,6 +36,17 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleToggleSwitchChange = () => {
+    if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
+    if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
+  };
 
   const handleAddClick = () => {
     setActiveModal("create");
@@ -38,6 +63,18 @@ function App() {
 
   const openDeleteModal = () => {
     setActiveModal("delete");
+  };
+
+  const handleSignUpClick = () => {
+    setActiveModal("signup-modal");
+  };
+
+  const handleLogInClick = () => {
+    setActiveModal("login-modal");
+  };
+
+  const handleProfileChangeClick = () => {
+    setActiveModal("user-modal");
   };
 
   function onAddItem({ name, weather, imageUrl }) {
@@ -60,10 +97,93 @@ function App() {
       .catch(console.error);
   }
 
-  const handleToggleSwitchChange = () => {
-    if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
-    if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
+  const handleRegistration = ({ name, email, password, avatar }) => {
+    const userProfile = { name, email, password, avatar };
+    signUp(userProfile)
+      .then((res) => {
+        handleLogInClick({ email, password });
+      })
+      .catch((error) => {
+        console.error("Error during Registration:", error);
+      });
   };
+
+  const handleLogin = ({ email, password }) => {
+    console.log("Attempting to login");
+    setIsLoading(true);
+
+    signIn({ email, password })
+      .then((res) => {
+        console.log(res);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          return checkToken(res.token);
+        } else {
+          console.error("No token in response");
+          throw new Error("No token in response");
+        }
+      })
+      .then((data) => {
+        setIsAuthenticated(true);
+        setCurrentUser(data);
+        closeActiveModal();
+        setLoggedIn(true);
+        navigate("/profile");
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+
+    !isLiked
+      ? addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
+  const handleSignout = () => {
+    localStorage.removeItem("jwt");
+    setIsAuthenticated(false);
+    setCurrentUser(null);
+    navigate("/");
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+
+    if (token) {
+      checkToken(token)
+        .then((res) => {
+          setLoggedIn(true);
+          setCurrentUser(res);
+          navigate("/profile");
+        })
+        .catch((error) => {
+          console.error("Token validation failed", error);
+          localStorage.removeItem("jwt");
+          setLoggedIn(false);
+        });
+    } else {
+      setLoggedIn(false);
+    }
+  }, []);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -83,6 +203,22 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   return (
     <div className="app">
