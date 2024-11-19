@@ -108,6 +108,21 @@ function App() {
       });
   };
 
+  const handleUpdateProfile = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+    updateCurrentUser({ name, avatar }, token)
+      .then((data) => {
+        setCurrentUser(data.user);
+        closeActiveModal();
+        navigate("/profile");
+        setIsAuthenticated(true);
+        setLoggedIn(true);
+      })
+      .catch((error) => {
+        console.error("Error updating profile:", error);
+      });
+  };
+
   const handleLogin = ({ email, password }) => {
     console.log("Attempting to login");
     setIsLoading(true);
@@ -263,6 +278,7 @@ function App() {
 
             <Footer />
           </div>
+          <ModalWithForm />
           {activeModal === "create" && (
             <AddItemModal
               handleCloseModal={closeActiveModal}
@@ -284,6 +300,15 @@ function App() {
               handleDeleteItem={handleDeleteItem}
               closeActiveModal={closeActiveModal}
               selectedCard={selectedCard}
+            />
+          )}
+          {activeModal === "signup-modal" && (
+            <RegisterModal
+              activeModal={activeModal}
+              closeActiveModal={closeActiveModal}
+              isOpen={activeModal === "signup-modal"}
+              handleRegistration={handleRegistration}
+              handleLogInClick={handleLogInClick}
             />
           )}
           {activeModal === "user-modal" && (

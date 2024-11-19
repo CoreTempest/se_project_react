@@ -1,7 +1,6 @@
 import React from "react";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import "./ClothesSection.css";
-// import { defaultClothingItems } from "../../utils/constants";
 
 function ClothesSection({
   clothingItems,
@@ -32,7 +31,7 @@ function ClothesSection({
           + Add New
         </button>
       </div>
-      <ul className="clothes-section__items">
+      <ul className={clothesSectionClassName}>
         {userClothingItems.map((item) => {
           return (
             <ItemCard

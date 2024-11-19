@@ -2,17 +2,37 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import React, { useState, useEffect } from "react";
 import "./LoginModal.css";
 
-const LoginModal = ({ handleCloseModal, onAddItem, isOpen }) => {
+const LoginModal = ({ handleCloseModal, isOpen, handleLogin }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
 
+  const validateForm = () => {
+    let isValid = true;
+    let errors = {
+      email: "",
+      password: "",
+    };
+
+    if (!email) {
+      errors.email = "Email is required.";
+      isValid = false;
+    }
+
+    if (!password) {
+      errors.password = "Password is required.";
+      isValid = false;
+    }
+
+    setErrors(errors);
+
+    return isValid;
+  };
   const handlePasswordChange = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 
   const handleEmailChange = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
@@ -31,7 +51,10 @@ const LoginModal = ({ handleCloseModal, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ email, password });
+    if (validateForm()) {
+      handleLogin({ email, password });
+    }
+    //onAddItem({ email, password });
   };
   return (
     <ModalWithForm

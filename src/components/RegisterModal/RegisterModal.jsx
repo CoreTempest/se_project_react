@@ -2,7 +2,12 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 import React, { useState, useEffect } from "react";
 
-const RegisterModal = ({ handleCloseModal, onAddItem, isOpen }) => {
+const RegisterModal = ({
+  handleCloseModal,
+  handleLogInClick,
+  isOpen,
+  handleRegistration,
+}) => {
   const [name, setName] = useState("");
   const [avatarUrl, setUrl] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +48,9 @@ const RegisterModal = ({ handleCloseModal, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, email, password, imageUrl });
+    if (validateForm()) {
+      handleRegistration({ name, email, avatar: avatarUrl, password });
+    }
   };
   return (
     <ModalWithForm
@@ -108,8 +115,9 @@ const RegisterModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           type="button"
           to="login"
           className="register__login-link"
-          onClick={() => setActiveModal("login")}
+          onClick={handleLogInClick}
         >
+          {" "}
           or Log In
         </button>
       </div>
