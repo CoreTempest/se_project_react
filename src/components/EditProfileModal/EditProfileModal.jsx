@@ -1,22 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import "../ModalWithForm/ModalWithForm.css";
+import "./EditProfileModal.css";
 
 const EditProfileModal = ({
   closeActiveModal,
   isOpen,
-  handleUpdateProfile,
+  onEditProfileSubmit,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-
   const [name, setName] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [data, setData] = useState("");
-  const [errors, setErrors] = useState({
-    name: "",
-    avatarUrl: "",
-  });
+  const [avatar, setAvatarUrl] = useState("");
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
   const validateForm = () => {
     let isValid = true;
@@ -50,65 +46,68 @@ const EditProfileModal = ({
     setErrors({ name: "", avatarUrl: "" });
   };
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    if (validateForm()) {
-      handleUpdateProfile({ name, avatar: avatarUrl });
-    }
-  };
+    onEditProfileSubmit({ name, avatar });
+  }
 
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleUrlChange = (e) => setAvatarUrl(e.target.value);
+  const handleNameChange = (e) => setName(e.target.value || "");
+  const handleAvatarChange = (e) => setAvatarUrl(e.target.value || "");
+
+  useEffect(() => {
+    if (name.trim() && avatar.trim()) {
+      setIsButtonActive(true);
+    } else {
+      setIsButtonActive(false);
+    }
+  }, [name, avatar]);
 
   useEffect(() => {
     if (currentUser) {
-      setName(currentUser.name);
-      setAvatarUrl(currentUser.avatar);
+      setName(currentUser.name || "");
+      setAvatarUrl(currentUser.avatar || "");
     }
   }, [currentUser]);
 
-  useEffect(() => {
-    setData({ name: "", avatar: "" });
-  }, [isOpen]);
-
   return (
     <ModalWithForm
-      title="Change profile data"
-      buttonText="Save changes"
+      title="Change Profile Data"
+      buttonText="Save Changes"
+      buttonClass={`modal__submit ${
+        isButtonActive ? "modal__submit_active" : ""
+      }`}
       isOpen={isOpen}
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
+      name={"editprofile"}
     >
       <label htmlFor="name" className="modal__label">
-        Name *
+        Name *{" "}
         <input
           type="text"
-          className={`modal__input modal__input_signup ${
-            errors.name ? "modal__input_error" : ""
-          }`}
+          className="modal__input"
           id="name"
-          placeholder="Name"
+          placeholder={name}
           value={name}
           onChange={handleNameChange}
-        ></input>
-        {errors.name && <span className="modal__error">{errors.name}</span>}
+          required
+        />
       </label>
-      <label htmlFor="avatarUrl" className="modal__label">
-        Avatar *
+      <label htmlFor="avatar" className="modal__label">
+        Avatar *{" "}
         <input
           type="url"
-          className={`modal__input modal__input_signup ${
-            errors.avatarUrl ? "modal__input_error" : ""
-          }`}
-          id="avatarUrl"
-          placeholder="Avatar URL"
-          value={avatarUrl}
-          onChange={handleUrlChange}
-        ></input>
-        {errors.avatarUrl && (
-          <span className="modal__error">{errors.avatarUrl}</span>
-        )}
+          className="modal__input modal__input-avatar"
+          id="avatar"
+          placeholder={avatar}
+          value={avatar}
+          onChange={handleAvatarChange}
+          required
+        />
       </label>
+      <button type="submit" className="modal__submit modal__save-changes">
+        Save Changes
+      </button>
     </ModalWithForm>
   );
 };

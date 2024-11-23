@@ -27,7 +27,7 @@ async function addNewItem(name, imageUrl, weather) {
   }).then(processServerResponse);
 }
 
-function deleteItemById(id) {
+function deleteItem(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
@@ -36,4 +36,4 @@ function deleteItemById(id) {
   }).then(processServerResponse);
 }
 
-export { getItems, addNewItem, deleteItemById, checkResponse };
+export { getItems, addNewItem, deleteItem, checkResponse };

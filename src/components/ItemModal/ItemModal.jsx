@@ -1,37 +1,37 @@
 import "./ItemModal.css";
-import close from "../../assets/white-close.svg";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ItemModal({ isOpen, onClose, card, openDeleteModal, selectedCard }) {
+function ItemModal({ isOpen, closeActiveModal, card, handleDeleteCardClick }) {
   const currentUser = useContext(CurrentUserContext);
-
-  const isOwn =
-    selectedCard && currentUser && selectedCard.owner === currentUser._id;
-
-  const itemDeleteButton = `modal__delete-btn ${
-    isOwn ? "modal__delete-btn_visible" : "modal__delete-btn_hidden"
-  }`;
+  const { name, imageUrl, weather } = card || {};
+  const isOwner = currentUser && currentUser?._id === card?.owner;
 
   return (
-    <div className={`modal ${isOpen && "modal_opened"}`}>
-      <div className="modal__content_type_image">
-        <button onClick={onClose} type="button" className="modal__close-btn">
-          <img src={close} alt="close-button" />
-        </button>
-        <img src={card.imageUrl} alt={card.name} className="modal__image" />
-        <div className="modal__footer">
-          <h2 className="modal__caption">{card.name}</h2>
-          <p className="modal__weather">Weather: {card.weather}</p>
-        </div>
+    <div className={`modal ${isOpen === "preview" && "modal_opened"}`}>
+      <div className="modal__content modal__content_type_image">
         <button
-          onClick={() => {
-            openDeleteModal();
-          }}
-          className={itemDeleteButton}
-        >
-          Delete Item
-        </button>
+          onClick={closeActiveModal}
+          type="button"
+          className="modal__close-btn"
+        ></button>
+        <img src={imageUrl} alt={card.name} className="modal__image" />
+        <div className="modal__footer">
+          <h2 className="modal__caption">{name}</h2>
+          <p className="modal__weather">Weather: {weather}</p>
+          {isOwner && (
+            <button
+              type="button"
+              onClick={handleDeleteCardClick}
+              className="modal__delete"
+            >
+              Delete Item
+            </button>
+          )}
+          {!isOwner && (
+            <p className="modal__restricted">You Cannot Delete This Item</p>
+          )}
+        </div>
       </div>
     </div>
   );

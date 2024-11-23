@@ -9,32 +9,33 @@ import { useContext } from "react";
 function Header({
   handleAddClick,
   weatherData,
-  handleSignUpClick,
-  handleLogInClick,
+  handleRegisterModal,
+  handleLoginModal,
   currentTemperatureUnit,
   handleToggleSwitchChange,
+  isLoggedIn,
 }) {
+  const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+  if (isLoggedIn === true) {
+    return (
+      <header className="header">
+        <Link to="/">
+          <img className="header__logo" src={logo} alt="Logo" />
+        </Link>
 
-  const currentUser = useContext(CurrentUserContext);
-  return (
-    <header className="header">
-      <Link to="/">
-        <img className="header__logo" alt="wtwr" src={logo} link="/" />
-      </Link>
-      <p className="header__date-and-location">
-        {currentDate}, {weatherData.city}
-      </p>
+        <p className="header__date-and-location">
+          {currentDate}, {weatherData.city}
+        </p>
+        <div className="header__actions">
+          <ToggleSwitch
+            currentTemperatureUnit={currentTemperatureUnit}
+            handleToggleSwitchChange={handleToggleSwitchChange}
+          />
 
-      <ToggleSwitch
-        currentTemperatureUnit={currentTemperatureUnit}
-        handleToggleSwitchChange={handleToggleSwitchChange}
-      />
-      {currentUser ? (
-        <>
           <button
             onClick={handleAddClick}
             type="button"
@@ -42,43 +43,42 @@ function Header({
           >
             + Add Clothes
           </button>
+
           <Link to="/profile" className="header__link">
             <div className="header__user-container">
               <p className="header__username">{currentUser.name}</p>
-              {currentUser.avatar ? (
-                <img
-                  src={currentUser.avatar}
-                  alt={currentUser.name}
-                  className="header__avatar"
-                />
-              ) : (
-                <div className="header__avatar-placeholder">
-                  {currentUser.name.charAt(0).toUpperCase()}
-                </div>
-              )}
+
+              <img
+                src={currentUser.avatar}
+                alt={currentUser.name}
+                className="header__avatar"
+              />
             </div>
           </Link>
-        </>
-      ) : (
-        <>
-          <button
-            onClick={handleSignUpClick}
-            type="button"
-            className="header__signup-btn"
-          >
-            Signup
-          </button>
-          <button
-            onClick={handleLogInClick}
-            type="button"
-            className="header__login-btn"
-          >
-            Log In
-          </button>
-        </>
-      )}
-    </header>
-  );
+        </div>
+      </header>
+    );
+  } else {
+    return (
+      <header className="header">
+        <Link to="/">
+          <img className="header__logo" src={logo} alt="logo" />
+        </Link>
+        <p className="header__date-location">
+          {currentDate}, {weatherData.city}
+        </p>
+        <div className="header__actions">
+          <ToggleSwitch />
+        </div>
+        <button onClick={handleRegisterModal} className="header__signup">
+          Sign Up
+        </button>
+        <button onClick={handleLoginModal} className="header__login">
+          Log In
+        </button>
+      </header>
+    );
+  }
 }
 
 export default Header;

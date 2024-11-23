@@ -11,4 +11,7 @@
 .cards__text {
   font-family: "CabinetGrotesk-Bold", "Arial", sans-serif;
   font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 34px;
+  text-align: left;
 }

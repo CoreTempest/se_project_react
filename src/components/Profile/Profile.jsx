@@ -1,32 +1,33 @@
+import React, { useState, useContext, useEffect } from "react";
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
 
 function Profile({
-  handleCardClick,
   clothingItems,
   handleAddClick,
-  currentUser,
-  handleProfileChangeClick,
+  handleEditProfileClick,
   handleCardLike,
   handleSignout,
+  isLoggedIn,
+  onCardClick,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
         <SideBar
-          currentUser={currentUser}
-          handleProfileChangeClick={handleProfileChangeClick}
           handleSignout={handleSignout}
+          handleEditProfileClick={handleEditProfileClick}
+          onEditProfileData={handleEditProfileClick}
         />
       </section>
-      <section className="profile__clothing-item">
+      <section className="profile__clothing-items">
         <ClothesSection
-          handleCardClick={handleCardClick}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
-          currentUser={currentUser}
-          onCardLike={handleCardLike}
+          onCardClick={onCardClick}
+          handleCardLike={handleCardLike}
+          isLoggedIn={isLoggedIn}
         />
       </section>
     </div>

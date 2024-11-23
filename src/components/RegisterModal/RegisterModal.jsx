@@ -3,121 +3,110 @@ import "./RegisterModal.css";
 import React, { useState, useEffect } from "react";
 
 const RegisterModal = ({
-  handleCloseModal,
-  handleLogInClick,
+  closeActiveModal,
+  openLoginModal,
   isOpen,
-  handleRegistration,
+  onSignUp,
+  buttonClass = "modal__submit",
 }) => {
   const [name, setName] = useState("");
-  const [avatarUrl, setUrl] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
-  const handleNameChange = (e) => {
-    console.log(e.target.value);
-    setName(e.target.value);
-  };
-
-  const handleUrlChange = (e) => {
-    console.log(e.target.value);
-    setUrl(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    console.log(e.target.value);
-    setPassword(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    console.log(e.target.value);
-    setEmail(e.target.value);
-  };
-
-  function resetForm() {
-    setName("");
-    setUrl("");
-    setEmail("");
-    set;
-  }
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
   useEffect(() => {
-    if (isOpen) {
-      resetForm();
-    }
-  }, [isOpen]);
+    setIsButtonActive(
+      email.trim() !== "" &&
+        password.trim() !== "" &&
+        name.trim() !== "" &&
+        avatar.trim() !== ""
+    );
+  }, [email, password, name, avatar]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      handleRegistration({ name, email, avatar: avatarUrl, password });
-    }
+    onSignUp({ email, password, name, avatar });
   };
+
   return (
     <ModalWithForm
       title="Sign Up"
       buttonText="Sign Up"
       isOpen={isOpen}
-      handleCloseModal={handleCloseModal}
+      closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
+      buttonClass={`modal__submit ${
+        isButtonActive ? "modal__submit_active" : ""
+      }`}
+      handleCloseModal={closeActiveModal}
     >
       <label htmlFor="email" className="modal__label">
-        Email{" "}
+        Email*{" "}
         <input
           type="email"
           className="modal__input"
           id="email"
+          name="email"
           placeholder="Email"
           value={email}
-          onChange={handleEmailChange}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </label>
       <label htmlFor="password" className="modal__label">
-        Password{" "}
+        Password*{" "}
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="registerPassword"
+          name="password"
           placeholder="Password"
           value={password}
-          onChange={handlePasswordChange}
+          onChange={(e) => setPassword(e.target.value)}
+          required
         />
       </label>
-      <label htmlFor="name" className="modal__label">
-        Name{" "}
+      <label className="modal__label">
+        Name*{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="registerName"
+          name="name"
           placeholder="Name"
           value={name}
-          onChange={handleNameChange}
+          onChange={(e) => setName(e.target.value)}
+          required
         />
       </label>
-      <label htmlFor="avatarUrl" className="modal__label">
-        Avatar URL{" "}
+      <label className="modal__label">
+        Avatar URL*{" "}
         <input
-          type="text"
-          className="modal__input"
+          type="url"
+          className="modal__input modal__input_signUp"
           id="avatarUrl"
+          name="avatar"
           placeholder="Avatar URL"
-          value={avatarUrl}
-          onChange={handleUrlChange}
+          value={avatar}
+          onChange={(e) => setAvatar(e.target.value)}
+          required
         />
       </label>
-      <div className="register__button-container">
+      <div className="modal__buttons-container">
         <button
           type="submit"
-          className={`register__link ${isFormValid() ? "active" : ""}`}
+          className={`${buttonClass} ${
+            isButtonActive ? "modal__submit_filled" : ""
+          }`}
         >
           Sign Up
         </button>
         <button
           type="button"
-          to="login"
-          className="register__login-link"
-          onClick={handleLogInClick}
+          className="modal__or-login-btn"
+          onClick={openLoginModal}
         >
-          {" "}
           or Log In
         </button>
       </div>

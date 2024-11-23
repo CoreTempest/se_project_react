@@ -1,52 +1,64 @@
-.modal__container {
-  width: 670px;
-  height: 280px;
-  background-color: white;
+.modal_questions {
   display: flex;
   flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.modal__content_type_delete {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 28px 28px 28px;
+  box-sizing: border-box;
+  max-width: 670px;
+  height: 280px;
   border-radius: 20px;
 }
 
-.modal__delete_question {
-  font-family: "CabinetGrotesk-Bold", "Arial", sans-serif;
-  text-align: center;
-  margin-top: 60px;
+.modal__delete__header {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
   margin-bottom: 0;
+  margin-top: 30px;
+  margin-left: 30px;
+  padding: 0px;
 }
 
-.modal__confirm {
-  color: red;
+.modal__question_warning {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-left: 80px;
+}
+
+.modal__question_confirm {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
   border: none;
-  background: none;
-  margin: auto;
-  display: flex;
-  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
-  position: relative;
-  outline: none;
-  cursor: pointer;
-  margin-top: 40px;
-  margin-bottom: 0px;
+  background-color: #fff;
+  color: rgba(255, 77, 0, 1);
+  margin-top: 20px;
+  margin-bottom: 24px;
 }
 
-.modal__cancel {
-  height: 24px;
-  width: 61px;
-  display: flex;
-  position: relative;
-  margin: auto;
+.modal__question_cancel {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
   border: none;
-  background: none;
-  padding: 0;
-  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
-  outline: none;
-  cursor: pointer;
-  margin-top: 24px;
+  background-color: #fff;
+  margin-bottom: 60px;
 }
 
-.modal__exit-btn {
-  position: relative;
-  top: 20px;
-  left: 625px;
-  height: 20px;
-  width: 20px;
+.modal__delete-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

@@ -1,67 +1,52 @@
-.modal__content_type_image {
-  padding: 0;
-  max-width: 498px;
-  max-height: 498px;
-  font-family: "CabinetGrotesk-Bold";
-  font-size: 20px;
-  font-style: normal;
-  line-height: 24px;
-  font-weight: 700;
-  border-style: none;
-}
-
 .modal__footer {
-  padding: 20px 32px 32px;
-  background-color: #fff;
-  margin: 0;
-  position: relative;
-  bottom: 6px;
-  border-radius: 0 0 16px 16px;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .modal__weather {
-  margin: 0;
-}
-
-.modal__close-btn {
-  position: relative;
-  top: 40px;
-  left: 460px;
-  background-image: url(../../assets/closebutton.png);
-  border: none;
-  height: 20px;
-  width: 20px;
+  margin-left: 4px;
+  margin-top: 12px;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 .modal__caption {
   margin: 0 0 12px;
   font-family: "CabinetGrotesk-Bold", "Arial", sans-serif;
   font-size: 20px;
+  line-height: 24px;
 }
 
 .modal__image {
-  width: 498px;
+  width: 100%;
+  max-width: 498px;
   height: 498px;
   object-fit: cover;
   border-radius: 16px 16px 0 0;
   margin: 0;
 }
 
-.modal__weather {
-  font-family: "CabinetGrotesk-Bold", "Arial", sans-serif;
+.modal__delete {
   font-size: 20px;
-}
-
-.card-item__delete-btn {
-  color: red;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(255, 77, 0, 1);
   border: none;
   background: none;
-  padding: 0;
-  margin: 0;
-  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
-  position: relative;
-  outline: none;
   cursor: pointer;
-  bottom: 96px;
-  left: 350px;
+  grid-column: 2/3;
+  grid-row: 1;
+  align-self: center;
+  justify-self: end;
+  margin: 0;
+  padding: 0;
+  margin-right: 32px;
+}
+
+.modal__restricted {
+  padding: 0;
+  margin-top: 0;
 }

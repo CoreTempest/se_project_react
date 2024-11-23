@@ -1,82 +1,89 @@
+import { baseUrl } from "./api";
 import { checkResponse } from "./api";
-import { baseUrl } from "../utils/api";
 
-const signUp = ({ name, avatar, email, password }) => {
-  return fetch(`${baseUrl}/signup`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name,
-      avatar,
-      email,
-      password,
-    }),
-  }).then(checkResponse);
-};
-
-const signIn = ({ email, password }) => {
-  return fetch(`${baseUrl}/signin`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-  }).then((res) => checkResponse(res));
-};
-
-const updateCurrentUser = ({ name, avatar }, token) => {
+export const checkToken = (token) => {
   return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+async function signUp({ email, password, name, avatar }) {
+  const res = await fetch(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password, name, avatar }),
+  }).then(checkResponse);
+}
+
+async function logIn({ email, password }) {
+  const res = await fetch(`${baseUrl}/signin`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  return checkResponse(res);
+}
+
+async function getUserProfile(token) {
+  const res = await fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+  return checkResponse(res);
+}
+
+async function handleEditProfile({ name, avatar }, token) {
+  const res = await fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      name,
-      avatar,
-    }),
-  }).then((res) => checkResponse(res));
-};
+    body: JSON.stringify({ name, avatar }),
+  });
+  return checkResponse(res);
+}
 
-const checkToken = (jwt) => {
-  return fetch(`${baseUrl}/users/me`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    },
-  }).then((res) => checkResponse(res));
-};
-
-function addCardLike(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "PUT", // Use PUT to add a like
+async function addCardLike(id, token) {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then((res) => checkResponse(res));
+  });
+  return checkResponse(res);
 }
 
-function removeCardLike(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "DELETE", // Use DELETE to remove a like
+async function removeCardLike(id, token) {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then((res) => checkResponse(res));
+  });
+  return checkResponse(res);
 }
+
 export {
   signUp,
-  signIn,
-  checkToken,
-  updateCurrentUser,
+  logIn,
+  getUserProfile,
+  handleEditProfile,
   addCardLike,
   removeCardLike,
 };
