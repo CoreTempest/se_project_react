@@ -9,7 +9,7 @@ function ItemCard({ item, onCardClick }) {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    const isLiked = item.likes.some((id) => id === currentUser._id);
+    const isLiked = item.likes.some((id) => id === currentUser?._id);
     {
       isLiked ? setIsLiked(true) : setIsLiked(false);
     }
