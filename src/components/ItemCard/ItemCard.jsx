@@ -13,7 +13,7 @@ function ItemCard({ item, onCardClick }) {
     {
       isLiked ? setIsLiked(true) : setIsLiked(false);
     }
-  }, [item.likes, currentUser._id]);
+  }, [item.likes, currentUser?._id]);
 
   const handleCardClick = () => {
     onCardClick(item);
@@ -26,7 +26,7 @@ function ItemCard({ item, onCardClick }) {
     <li className="card">
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
-        {currentUser._id && (
+        {currentUser?._id && (
           <img
             className={"card__like-btn"}
             typeof="button"
