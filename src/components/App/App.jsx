@@ -83,9 +83,15 @@ function App() {
 
   const handleAddItem = async (newItem) => {
     const token = localStorage.getItem("jwt");
-    const addedItem = await addItem(newItem, token);
-    setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
-    closeActiveModal();
+    addNewItem(newItem, token)
+      .then((addedItem) => {
+        setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
+
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
   };
 
   function handleDeleteItem() {
@@ -276,7 +282,7 @@ function App() {
             buttonText="Add Garment"
             title="New Garment"
             isOpen={activeModal === "create"}
-            addItem={handleAddItem}
+            addNewItem={handleAddItem}
             onClose={closeActiveModal}
           />
 

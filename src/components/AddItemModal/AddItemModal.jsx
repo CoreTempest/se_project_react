@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
 
-const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
+const AddItemModal = ({ closeActiveModal, addNewItem, isOpen }) => {
   const [name, setName] = useState("");
   const [imageUrl, setUrl] = useState("");
   const [weather, setWeather] = useState("");
@@ -28,7 +28,7 @@ const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addItem({ name, imageUrl, weather, resetForm });
+    addNewItem({ name, imageUrl, weather, resetForm });
   };
 
   function resetForm() {
