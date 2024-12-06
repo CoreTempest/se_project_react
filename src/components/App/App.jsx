@@ -66,6 +66,7 @@ function App() {
   };
 
   const handleDeleteCardClick = () => {
+    console.log("Delete is being called");
     setActiveModal("delete");
   };
 
@@ -297,7 +298,7 @@ function App() {
             <ConfirmDeleteModal
               isOpen={activeModal}
               onClose={closeActiveModal}
-              handleCardDelete={handleDeleteItem}
+              handleDeleteItem={handleDeleteItem}
               selectedCard={selectedCard}
             />
           )}

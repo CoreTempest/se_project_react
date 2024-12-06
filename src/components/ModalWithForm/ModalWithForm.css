@@ -43,15 +43,14 @@
 }
 
 .modal__close {
-  position: absolute;
-  top: 20px;
-  right: 28px;
+  position: relative;
   background-image: url(../../assets/closebutton.png);
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border: none;
   background-color: transparent;
   cursor: pointer;
+  left: 425px;
 }
 
 .modal__form {

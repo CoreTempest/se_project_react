@@ -1,9 +1,9 @@
 import "./ConfirmDelete.css";
 import closeBtn from "../../assets/closebutton.png";
 
-function ConfirmDeleteModal({ isOpen, onClose, handleCardDelete }) {
+function ConfirmDeleteModal({ isOpen, onClose, handleDeleteItem }) {
   return (
-    <div className={`modal  ${isOpen === "delete-confirm" && "modal_opened"}`}>
+    <div className={`modal  ${isOpen === "delete" && "modal_opened"}`}>
       <div className="modal__container modal__content_type_delete">
         <button className="modal__close" type="button" onClick={onClose} />
         <div className="modal__questions">
@@ -14,7 +14,7 @@ function ConfirmDeleteModal({ isOpen, onClose, handleCardDelete }) {
           <div className="modal__delete-btns">
             <button
               className="modal__delete_btn modal__question_confirm"
-              onClick={handleCardDelete}
+              onClick={handleDeleteItem}
             >
               Yes, Delete Item
             </button>
