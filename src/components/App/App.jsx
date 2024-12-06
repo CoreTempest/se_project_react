@@ -81,11 +81,10 @@ function App() {
     setActiveModal("edit");
   };
 
-  const handleAddItem = async (newItem) => {
-    const token = localStorage.getItem("jwt");
-    addNewItem(newItem, token)
-      .then((addedItem) => {
-        setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
+  const handleAddItem = (item) => {
+    addNewItem(item.name, item.imageUrl, item.weather.toLowerCase())
+      .then((newItem) => {
+        setClothingItems((prevItems) => [newItem.data, ...prevItems]);
 
         closeActiveModal();
       })
@@ -298,7 +297,7 @@ function App() {
             <ConfirmDeleteModal
               isOpen={activeModal}
               onClose={closeActiveModal}
-              handleDeleteItem={handleDeleteItem}
+              handleCardDelete={handleDeleteItem}
               selectedCard={selectedCard}
             />
           )}

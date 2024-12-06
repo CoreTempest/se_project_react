@@ -14,10 +14,12 @@ function getItems() {
 }
 
 async function addNewItem(name, imageUrl, weather) {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
@@ -32,8 +34,20 @@ function deleteItem(id) {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
 }
 
-export { getItems, addNewItem, deleteItem, checkResponse };
+function getUserInfo(token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+}
+
+export { getItems, addNewItem, deleteItem, getUserInfo, checkResponse };

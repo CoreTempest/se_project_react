@@ -20,12 +20,6 @@ const AddItemModal = ({ closeActiveModal, addNewItem, isOpen }) => {
     setWeather(e.target.value);
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      resetForm();
-    }
-  }, [isOpen]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewItem({ name, imageUrl, weather, resetForm });
@@ -36,6 +30,12 @@ const AddItemModal = ({ closeActiveModal, addNewItem, isOpen }) => {
     setUrl("");
     setWeather("");
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     setIsButtonActive(
