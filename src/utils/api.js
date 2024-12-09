@@ -29,8 +29,8 @@ async function addNewItem(name, imageUrl, weather) {
   }).then(processServerResponse);
 }
 
-function deleteItem(id) {
-  return fetch(`${baseUrl}/items/${id}`, {
+function deleteItem(selectedCard, token) {
+  return fetch(`${baseUrl}/items/${selectedCard._id}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
