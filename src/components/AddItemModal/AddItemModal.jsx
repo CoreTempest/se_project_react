@@ -51,7 +51,7 @@ const AddItemModal = ({ closeActiveModal, addNewItem, isOpen }) => {
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         Name{" "}
         <input
           type="text"

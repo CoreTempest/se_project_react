@@ -152,18 +152,22 @@ function App() {
     const token = localStorage.getItem("jwt");
 
     return !isLiked
-      ? addCardLike(_id, token).then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) => (item._id === _id ? updatedCard : item))
-          );
-          setIsLiked(true).catch(console.error);
-        })
-      : removeCardLike(_id, token).then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
-          );
-          setIsLiked(false).catch(console.error);
-        });
+      ? addCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item))
+            );
+            setIsLiked(true);
+          })
+          .catch(console.error)
+      : removeCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+            setIsLiked(false);
+          })
+          .catch(console.error);
   };
 
   const handleSignout = () => {
@@ -219,10 +223,12 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
-      getUserProfile(token).then((res) => {
-        setCurrentUser(res);
-        setIsLoggedIn(true);
-      });
+      getUserProfile(token)
+        .then((res) => {
+          setCurrentUser(res);
+          setIsLoggedIn(true);
+        })
+        .catch(console.error);
     }
   }, []);
 
