@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://CoreTempest.github.io/se_project_react/",
+  "homepage": "https://coretempest.jumpingcrab.com",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",

@@ -1,3 +1,8 @@
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.coretempest.jumpingcrab.com"
+    : "http://localhost:3001";
+
 export const weatherOptions = [
   {
     day: true,
@@ -109,9 +114,11 @@ export const defaultClothingItems = [
   },
 ];
 
-export const coordinates = {
+const coordinates = {
   latitude: 38.6366,
   longitude: -121.327271,
 };
 
 export const APIkey = "59ca8f045fe94276700ae9297f9ceee1";
+
+export { coordinates, BASE_URL };

@@ -1,8 +1,8 @@
-import { baseUrl } from "./api";
+import { BASE_URL } from "../utils/constants";
 import { checkResponse } from "./api";
 
 export const checkToken = (token) => {
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -12,7 +12,7 @@ export const checkToken = (token) => {
 };
 
 async function signUp({ email, password, name, avatar }) {
-  const res = await fetch(`${baseUrl}/signup`, {
+  const res = await fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -23,7 +23,7 @@ async function signUp({ email, password, name, avatar }) {
 }
 
 async function logIn({ email, password }) {
-  const res = await fetch(`${baseUrl}/signin`, {
+  const res = await fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -35,7 +35,7 @@ async function logIn({ email, password }) {
 }
 
 async function getUserProfile(token) {
-  const res = await fetch(`${baseUrl}/users/me`, {
+  const res = await fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ async function getUserProfile(token) {
 }
 
 async function handleEditProfile({ name, avatar }, token) {
-  const res = await fetch(`${baseUrl}/users/me`, {
+  const res = await fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -58,7 +58,7 @@ async function handleEditProfile({ name, avatar }, token) {
 }
 
 async function addCardLike(id, token) {
-  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+  const res = await fetch(`${BASE_URL}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -69,7 +69,7 @@ async function addCardLike(id, token) {
 }
 
 async function removeCardLike(id, token) {
-  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+  const res = await fetch(`${BASE_URL}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

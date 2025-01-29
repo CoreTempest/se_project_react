@@ -1,6 +1,6 @@
 import { processServerResponse } from "./processserver";
 
-export const baseUrl = "http://localhost:3001";
+import { BASE_URL } from "../utils/constants";
 
 function checkResponse(res) {
   if (res.ok) {
@@ -10,12 +10,12 @@ function checkResponse(res) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(processServerResponse);
+  return fetch(`${BASE_URL}/items`).then(processServerResponse);
 }
 
 async function addNewItem(name, imageUrl, weather) {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/items`, {
+  return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -30,7 +30,7 @@ async function addNewItem(name, imageUrl, weather) {
 }
 
 function deleteItem(selectedCard, token) {
-  return fetch(`${baseUrl}/items/${selectedCard._id}`, {
+  return fetch(`${BASE_URL}/items/${selectedCard._id}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
@@ -40,7 +40,7 @@ function deleteItem(selectedCard, token) {
 }
 
 function getUserInfo(token) {
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
