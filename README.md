@@ -9,7 +9,7 @@ By using React.js, the project is able to utilize authorization through a JWT to
 
 - [Domain name - Back End] (api.coretempest.jumpingcrab.com)
 
-- [Domain name - Front End] (coretempest.jumpingcrab.com)
+- [Domain name - Front End] (www.coretempest.jumpingcrab.com)
 
 - [Backend Repo] (https://github.com/CoreTempest/se_project_express)
 
