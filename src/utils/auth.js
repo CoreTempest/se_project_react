@@ -39,7 +39,7 @@ async function getUserProfile(token) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
   return checkResponse(res);
@@ -62,7 +62,7 @@ async function addCardLike(id, token) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
   return checkResponse(res);
@@ -73,7 +73,7 @@ async function removeCardLike(id, token) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
   return checkResponse(res);
