@@ -6,9 +6,6 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
   ).then(processServerResponse);
 };
 
-//weather.temperature.F = data.main.temp);
-//weather.temperature.C = Math.round((data.main.temp - 32) * 5/9)};
-
 export const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
