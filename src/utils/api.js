@@ -39,7 +39,7 @@ function deleteItem(selectedCard, token) {
   }).then(processServerResponse);
 }
 
-function getUserInfo(token) {
+/*function getUserInfo(token) {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
@@ -48,6 +48,6 @@ function getUserInfo(token) {
       Authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
-}
+} */
 
-export { getItems, addNewItem, deleteItem, getUserInfo, checkResponse };
+export { getItems, addNewItem, deleteItem, checkResponse };

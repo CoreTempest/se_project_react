@@ -1,7 +1,7 @@
 const BASE_URL =
   process.env.NODE_ENV === "production"
     ? "https://api.coretempest.jumpingcrab.com"
-    : "http://localhost:3000";
+    : "http://localhost:3001";
 
 export const weatherOptions = [
   {

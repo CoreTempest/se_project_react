@@ -25,23 +25,24 @@ function Main({
           {currentTemperatureUnit} / You may want to wear
         </p>
         <ul className="cards__list">
-          {clothingItems
-            .filter((item) => {
-              return item.weather === weatherData.type;
-            })
-            .map((item) => {
-              return (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  onCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                  handleCardLike={handleCardLike}
-                  isLiked={isLiked}
-                  isLoggedIn={isLoggedIn}
-                />
-              );
-            })}
+          {clothingItems &&
+            clothingItems
+              .filter((item) => {
+                return item.weather === weatherData.type;
+              })
+              .map((item) => {
+                return (
+                  <ItemCard
+                    key={item._id}
+                    item={item}
+                    onCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                    handleCardLike={handleCardLike}
+                    isLiked={isLiked}
+                    isLoggedIn={isLoggedIn}
+                  />
+                );
+              })}
         </ul>
       </section>
     </main>
