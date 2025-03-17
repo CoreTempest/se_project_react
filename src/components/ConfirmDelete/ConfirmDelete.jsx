@@ -1,5 +1,4 @@
 import "./ConfirmDelete.css";
-import closeBtn from "../../assets/closebutton.png";
 
 function ConfirmDeleteModal({ isOpen, onClose, handleDeleteItem }) {
   return (

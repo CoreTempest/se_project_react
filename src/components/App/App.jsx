@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer.jsx";
@@ -42,8 +41,6 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -113,7 +110,7 @@ function App() {
   const onSignUp = ({ email, password, name, avatar }) => {
     const userProfile = { email, password, name, avatar };
     signUp(userProfile)
-      .then((res) => {
+      .then(() => {
         onLogIn({ email, password });
       })
       .catch((error) => {
@@ -222,7 +219,6 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
-    console.log("token", token);
     if (token) {
       getUserProfile(token)
         .then((res) => {

@@ -47,7 +47,7 @@ function getUserInfo(token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(handleServerResponse);
+  }).then(processServerResponse);
 }
 
 export { getItems, addNewItem, deleteItem, getUserInfo, checkResponse };

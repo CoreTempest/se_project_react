@@ -1,5 +1,5 @@
 import "./ItemCard.css";
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import likedImg from "../../assets/like-active.svg";
 import dislikedImg from "../../assets/like.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
@@ -29,7 +29,7 @@ function ItemCard({ item, onCardClick }) {
         {currentUser?._id && (
           <img
             className={"card__like-btn"}
-            typeof="button"
+            type="button"
             src={isLiked ? likedImg : dislikedImg}
             alt="Like Button"
             onClick={handleCardLike}

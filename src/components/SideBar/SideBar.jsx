@@ -1,4 +1,3 @@
-import avatar from "../../assets/avatar.png";
 import React from "react";
 import "../Profile/Profile.css";
 import "./SideBar.css";

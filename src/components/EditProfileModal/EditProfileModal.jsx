@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "../ModalWithForm/ModalWithForm.css";
@@ -27,10 +27,10 @@ const EditProfileModal = ({
     }
 
     if (!avatarUrl) {
-      errors.avatarUrl = "Image URL is required.";
+      errors.avatar = "Image URL is required.";
       isValid = false;
     } else if (!/^https?:\/\/.+/.test(avatarUrl)) {
-      errors.avatarUrl = "Invalid URL format.";
+      errors.avatar = "Invalid URL format.";
       isValid = false;
     }
 
@@ -43,7 +43,7 @@ const EditProfileModal = ({
 
     setAvatarUrl("");
 
-    setErrors({ name: "", avatarUrl: "" });
+    setErrors({ name: "", avatar: "" });
   };
 
   function handleSubmit(e) {
